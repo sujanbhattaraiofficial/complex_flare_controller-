@@ -90,6 +90,29 @@ class _GlassFillState extends State<GlassFill> {
               ),
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: InkWell(
+              onTap: resetWater,
+              child: Container(
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+                child: Center(
+                    child: Text(
+                  "Reset",
+                  style: TextStyle(
+                      letterSpacing: 1.2, color: Colors.black, fontSize: 20),
+                )),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -110,6 +133,13 @@ class _GlassFillState extends State<GlassFill> {
       currentGlass = currentGlass - 1;
       double percentToadd = currentGlass / totalGlass;
       _flareController.updateWaterPercent(percentToadd);
+    });
+  }
+
+  void resetWater() {
+    setState(() {
+      currentGlass = 0;
+      _flareController.resetWater();
     });
   }
 }
